@@ -1,0 +1,8 @@
+
+int main()
+
+{
+
+	proc process1=PROCESSOR(isa='AMD',clock_speed=40,mem1,name="processor1");
+
+}

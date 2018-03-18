@@ -1,0 +1,22 @@
+
+int main()
+
+{
+	proc processor_array[10];
+	mem mem1;
+	jb job_1;
+	clust cluster1;
+	for(i=0;i<10;i++)
+
+	{
+
+	mem1 = Memory(memory_type='primary', mem_size = 512 );
+
+	processor_array[i] = Processor(isa = 'AMD',clock_speed : 40, l1_memory = mem1);
+
+	}
+
+	job_1 = Job(job_id=1, flops_required = 20, deadline = 200, mem_required = 64, affinity =[0.3,1.5,2,4]);
+
+	cluster1 = Cluster(processor_array, "ring", 50, 40, name = "cluster1");
+}

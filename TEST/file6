@@ -1,0 +1,6 @@
+
+proc Process1 = Processor(isa = 'AMD', clock_speed = 50, l1_memory = Mem_1, l2_memory = Mem_2, name = 'first_proc');
+
+proc Process2 = Processor('AMD', clock_speed = 50, l1_memory =Memory('primary', 64), 'sec_proc');
+
+clust cluster1 = Cluster([Process1, Process2], "ring", 50, 40 );
