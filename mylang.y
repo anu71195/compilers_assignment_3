@@ -71,7 +71,7 @@
 %token	RIGHT_CURLY					
 %token	COMMA						
 %token	ASGN_OP						
-%token	LEFT_PARENTEHSIS			
+%token	LEFT_PARENTHESIS			
 %token	RIGHT_PARENTHESIS			
 %token	LEFT_BRACKET				
 %token	RIGHT_BRACKET				
@@ -90,7 +90,10 @@
 %token	BTW_OR						
 %token	INVALID						
 %token MEMORY 						
-%token PROCESSORS					
+%token PROCESSORS
+%token 	DEREF_OP
+%token GET_CLOCK_SPEED	
+%token MEM_TYPES	
 %start Start
 %%
 Start
@@ -108,8 +111,8 @@ Object_declaration
 	;
 
 Dec_specifier
-	:Type_specifier pointer				{printf("Dec_specifier->Type_specifier pointer\n");}
-	|Type_specifier						{printf("Dec_specifier->Type_specifier\n");}
+	:type_specifier pointer				{printf("Dec_specifier->Type_specifier pointer\n");}
+	|type_specifier						{printf("Dec_specifier->Type_specifier\n");}
 	;
 
 array_initialiser
@@ -127,8 +130,8 @@ body_or_proto
 	|SEMI_COLON							    	{printf("body_or_proto->SEMI_COLON\n");}
 	;
 argument_list
-	:Dec_specifier identifier COMMA argument_list	{printf("argument_list->Dec_specifier identifier COMMA argument_list\n");}
-	|Dec_specifier identifier	{printf("argument_list->Dec_specifier identifier\n");}
+	:Dec_specifier IDENTIFIER COMMA argument_list	{printf("argument_list->Dec_specifier IDENTIFIER COMMA argument_list\n");}
+	|Dec_specifier IDENTIFIER	{printf("argument_list->Dec_specifier IDENTIFIER\n");}
 	;
 type_specifier
 	:INT		{printf("type_specifier->INT\n");}
@@ -146,17 +149,17 @@ pointer
 	|MUL_OP		{printf("pointer->MUL_OP\n");}
 	;
 statement_list
-	:statement statement_list	{printf("statement_list->statement statement_list\n");}
-	|statement	{printf("statement_list->statement\n");}
+	:Statement statement_list	{printf("statement_list->Statement statement_list\n");}
+	|Statement	{printf("statement_list->Statement\n");}
 	;
 
 Statement
 	:LEFT_CURLY statement_list RIGHT_CURLY		{printf("Statement->LEFT_CURLY statement_list RIGHT_CURLY\n");}
-	|Expression_statement 		{printf("Statement->Expression_statement\n");}
+	|Expression_statement 		{printf("Statement->Expression_Statement\n");}
 	|Selection_statement 		{printf("Statement->Selection_statement\n");}
 	|Iteration_statement 		{printf("Statement->Iteration_statement\n");}
 	|Jump_statement		{printf("Statement->Jump_statement\n");}
-	|Object_Declaration		{printf("Statement->Object_Declaration\n");}
+	|Object_declaration		{printf("Statement->Object_declaration\n");}
 	;
 Jump_statement
 	:RETURN expression	{printf("Jump_statement->RETURN expression\n");}
@@ -164,21 +167,21 @@ Jump_statement
 	|BREAK SEMI_COLON	{printf("Jump_statement->BREAK SEMI_COLON\n");}
 	;
 Selection_statement
-	:IF LEFT_PARENTEHSIS expression RIGHT_PARENTHESIS LEFT_CURLY statement_list RIGHT_CURLY else LEFT_CURLY statement_list RIGHT_CURLY	{printf("Select_statement->IF LEFT_PARENTEHSIS expression RIGHT_PARENTHESIS LEFT_CURLY statement_list RIGHT_CURLY else LEFT_CURLY statement_list RIGHT_CURLY\n");}
+	:IF LEFT_PARENTHESIS expression RIGHT_PARENTHESIS LEFT_CURLY statement_list RIGHT_CURLY ELSE LEFT_CURLY statement_list RIGHT_CURLY	{printf("Select_statement->IF LEFT_PARENTEHSIS expression RIGHT_PARENTHESIS LEFT_CURLY statement_list RIGHT_CURLY else LEFT_CURLY statement_list RIGHT_CURLY\n");}
 	|IF LEFT_PARENTHESIS expression RIGHT_PARENTHESIS LEFT_CURLY statement_list RIGHT_CURLY	{printf("Select_statement->IF LEFT_PARENTHESIS expression RIGHT_PARENTHESIS LEFT_CURLY statement_list RIGHT_CURLY\n");}
 	;
-Iteration_Statement
-	:WHILE LEFT_PARENTEHSIS expression RIGHT_PARENTHESIS statement 	{printf("Iteration_Statement->WHILE LEFT_PARENTEHSIS expression RIGHT_PARENTHESIS Statement\n");}
-	|FOR LEFT_PARENTHESIS Expression_statement Expression_statement RIGHT_PARENTHESIS statement 	{printf("Iteration_Statement->FOR LEFT_PARENTHESIS Expression_statement Expression_statement RIGHT_PARENTHESIS Statement\n");}
-	|FOR LEFT_PARENTHESIS Expression_statement Expression_statement expression RIGHT_PARENTHESIS statement 	{printf("Iteration_Statement->FOR LEFT_PARENTHESIS Expression_statement Expression_statement expression RIGHT_PARENTHESIS Statement\n");}
+Iteration_statement
+	:WHILE LEFT_PARENTHESIS expression RIGHT_PARENTHESIS Statement 	{printf("Iteration_Statement->WHILE LEFT_PARENTEHSIS expression RIGHT_PARENTHESIS Statement\n");}
+	|FOR LEFT_PARENTHESIS Expression_statement Expression_statement RIGHT_PARENTHESIS Statement 	{printf("Iteration_Statement->FOR LEFT_PARENTHESIS Expression_statement Expression_statement RIGHT_PARENTHESIS Statement\n");}
+	|FOR LEFT_PARENTHESIS Expression_statement Expression_statement expression RIGHT_PARENTHESIS Statement 	{printf("Iteration_Statement->FOR LEFT_PARENTHESIS Expression_statement Expression_statement expression RIGHT_PARENTHESIS Statement\n");}
 	;
-Expression_Statement
+Expression_statement
 	:expression SEMI_COLON	{printf("Expression_Statement->expression SEMI_COLON\n");}
 	|SEMI_COLON	{printf("Expression_Statement->SEMI_COLON\n");}
 	;
 expression
 	:assignment_expression {printf("expression->assignment_expression\n");}
-	|expression COMMA Assignment_expression {printf("expression->expression COMMA Assignment_expression\n");}
+	|expression COMMA assignment_expression {printf("expression->expression COMMA assignment_expression\n");}
 	;
 assignment_expression
 	:unary_expression ASGN_OP assignment_expression	{printf("assignment_expression->unary_expression ASGN_OP assignment_expression\n");}
@@ -234,12 +237,12 @@ additive_expression
 multiplicative_expression
 	:unary_expression 	{printf("multiplicative_expression->unary_expression\n");}
 	|multiplicative_expression MUL_OP unary_expression 	{printf("multiplicative_expression->multiplicative_expression MUL_OP unary_expression\n");}
-	|multiplicative_expression DIV_OP unary_expressionn 	{printf("multiplicative_expression->multiplicative_expression DIV_OP unary_expressionn\n");}
+	|multiplicative_expression DIV_OP unary_expression 	{printf("multiplicative_expression->multiplicative_expression DIV_OP unary_expressionn\n");}
 	|multiplicative_expression MOD_OP unary_expression 	{printf("multiplicative_expression->multiplicative_expression MOD_OP unary_expression\n");}
 	;
 unary_expression
-	:postfix_expressoin	{printf("unary_expression->postfix_expressoin\n");}
-	|INC_OP unary_expressoin	{printf("unary_expression->INC_OP unary_expressoin\n");}
+	:postfix_expression	{printf("unary_expression->postfix_expressoin\n");}
+	|INC_OP unary_expression	{printf("unary_expression->INC_OP unary_expressoin\n");}
 	|DEC_OP unary_expression	{printf("unary_expression->DEC_OP unary_expression\n");}
 	|unary_operator unary_expression	{printf("unary_expression->unary_operator unary_expression\n");}
 	;
@@ -259,8 +262,8 @@ postfix_expression
 	|postfix_expression DEC_OP 	{printf("postfix_expression->postfix_expression DEC_OP\n");}
 	;
 array_expression
-	:array_expression LEFT_BRACKET expression RIGHT_EXPRESSION	{printf("array_expression->array_expression LEFT_BRACKET expression RIGHT_EXPRESSION\n");}
-	|Primary_expression LEFT_BRACKET expression RIGHT_BRACKET	{printf("array_expression->Primary_expression LEFT_BRACKET expression RIGHT_BRACKET\n");}
+	:array_expression LEFT_BRACKET expression RIGHT_BRACKET	{printf("array_expression->array_expression LEFT_BRACKET expression RIGHT_EXPRESSION\n");}
+	|primary_expression LEFT_BRACKET expression RIGHT_BRACKET	{printf("array_expression->Primary_expression LEFT_BRACKET expression RIGHT_BRACKET\n");}
 	;
 primary_expression
 	:IDENTIFIER DEREF_OP IDENTIFIER 	{printf("primary_expression->IDENTIFIER DEREF_OP IDENTIFIER\n");}
@@ -281,9 +284,9 @@ cluster_object
 	;
 proc_arr_arg
 	:PROCESSORS ASGN_OP IDENTIFIER 	{printf("proc_arr_arg->PROCESSORS ASGN_OP IDENTIFIER\n");}
-	|PROCESSORS ASGN_OP LEFT_BRACKET cluster_list RIGHT BRACKET 	{printf("proc_arr_arg->PROCESSORS ASGN_OP LEFT_BRACKET cluster_list RIGHT BRACKET\n");}
+	|PROCESSORS ASGN_OP LEFT_BRACKET cluster_list RIGHT_BRACKET 	{printf("proc_arr_arg->PROCESSORS ASGN_OP LEFT_BRACKET cluster_list RIGHT BRACKET\n");}
 	|IDENTIFIER 	{printf("proc_arr_arg->IDENTIFIER\n");}
-	|LEFT BRACKET cluster_list RIGHT_BRACKET 	{printf("proc_arr_arg->LEFT BRACKET cluster_list RIGHT_BRACKET\n");}
+	|LEFT_BRACKET cluster_list RIGHT_BRACKET 	{printf("proc_arr_arg->LEFT BRACKET cluster_list RIGHT_BRACKET\n");}
 	;
 cluster_list
 	:cluster_object COMMA cluster_list {printf("cluster_list->cluster_object COMMA cluster_list\n");}
@@ -303,11 +306,11 @@ link_cap_arg
 	;
 narp
 	:COMMA conditional_expression RIGHT_PARENTHESIS  {printf("narp->COMMA conditional_expression RIGHT_PARENTHESIS\n");}
-	|COMMA NAME ASGN_OP conditional expression  {printf("narp->COMMA NAME ASGN_OP conditional expression\n");}
-	|RIGHT PARENTHESIS  {printf("narp->RIGHT PARENTHESIS\n");}
+	|COMMA NAME ASGN_OP conditional_expression   {printf("narp->COMMA NAME ASGN_OP conditional_expression\n");}
+	|RIGHT_PARENTHESIS  {printf("narp->RIGHT PARENTHESIS\n");}
 	;
 processor_object
-	:PROCESSOR LEFT_PARENTHESIS isa_args COMMA clock_args COMMA mem_args narp {printf("processor_object->PROCESSOR LEFT_PARENTHESIS isa_args COMMA clock_args COMMA mem_args narp\n");}
+	:PROCESSOR LEFT_PARENTHESIS isa_args COMMA Clock_args COMMA mem_args narp {printf("processor_object->PROCESSOR LEFT_PARENTHESIS isa_args COMMA Clock_args COMMA mem_args narp\n");}
 	;
 isa_args
 	:ISA ASGN_OP PROC_TYPE {printf("isa_args->ISA ASGN_OP PROC_TYPE\n");}
@@ -318,7 +321,7 @@ Clock_args
 	|CONSTANT 	{printf("Clock_args->CONSTANT\n");}
 	;
 mem_args
-	:MEM1 ASGN_OP memory COMMA MEM2 ASGN_OP Memory  {printf("mem_args->MEM1 ASGN_OP memory COMMA MEM2 ASGN_OP Memory\n");}
+	:MEM1 ASGN_OP memory COMMA MEM2 ASGN_OP memory  {printf("mem_args->MEM1 ASGN_OP memory COMMA MEM2 ASGN_OP Memory\n");}
 	|MEM1 ASGN_OP memory COMMA memory  {printf("mem_args->MEM1 ASGN_OP memory COMMA memory\n");}
 	|MEM1 ASGN_OP memory  {printf("mem_args->MEM1 ASGN_OP memory\n");}
 	|memory COMMA MEM2 ASGN_OP memory  {printf("mem_args->memory COMMA MEM2 ASGN_OP memory\n");}
@@ -330,11 +333,11 @@ memory
 	|IDENTIFIER  {printf("memory->IDENTIFIER\n");}
 	;
 link_object
-	:LINK LEFT_PARENTHESIS start_args COMMA end_args COMMA link_band_args COMMA link_cap_args narp  {printf("link_object->LINK LEFT_PARENTHESIS start_args COMMA end_args COMMA link_band_args COMMA link_cap_args narp\n");}
+	:LINK LEFT_PARENTHESIS start_args COMMA end_args COMMA link_band_arg COMMA link_cap_arg narp  {printf("link_object->LINK LEFT_PARENTHESIS start_args COMMA end_args COMMA link_band_arg COMMA link_cap_arg narp\n");}
 	|IDENTIFIER  {printf("link_object->IDENTIFIER\n");}
 	;
 start_args
-	:START_POINT ASGN_OP conditional expression {printf("start_args->START_POINT ASGN_OP conditional expression\n");}
+	:START_POINT ASGN_OP conditional_expression {printf("start_args->START_POINT ASGN_OP conditional expression\n");}
 	|conditional_expression {printf("start_args->conditional_expression\n");}
 	;
 end_args
@@ -360,7 +363,7 @@ job_id_args
 	|conditional_expression {printf("job_id_args->conditional_expression\n");}
 	;
 flops_args	
-	:FLOPS_REQUIRED ASGN_OP conditional_expressoin  {printf("flops_args->JOB_ID ASGN_OP conditional_expression\n");}
+	:FLOPS_REQUIRED ASGN_OP conditional_expression  {printf("flops_args->JOB_ID ASGN_OP conditional_expression\n");}
 	|conditional_expression  {printf("flops_args->conditional_expression\n");}
 	;
 deadline_args
@@ -383,16 +386,20 @@ function_expression
 	:RUN LEFT_PARENTHESIS cluster_list RIGHT_PARENTHESIS  {printf("function_expression->RUN LEFT_PARENTHESIS cluster_list RIGHT_PARENTHESIS\n");}
 	|WAIT LEFT_PARENTHESIS RIGHT_PARENTHESIS  {printf("function_expression->WAIT LEFT_PARENTHESIS RIGHT_PARENTHESIS\n");}
 	|DISCARD_JOB LEFT_PARENTHESIS job_list RIGHT_PARENTHESIS  {printf("function_expression->DISCARD_JOB LEFT_PARENTHESIS job_list RIGHT_PARENTHESIS\n");}
-	|STOP LEFT_PARETHESIS IDENTIFIER RIGHT_PARENTHESIS  {printf("function_expression->STOP LEFT_PARETHESIS IDENTIFIER RIGHT_PARENTHESIS\n");}
+	|STOP LEFT_PARENTHESIS IDENTIFIER RIGHT_PARENTHESIS  {printf("function_expression->STOP LEFT_PARETHESIS IDENTIFIER RIGHT_PARENTHESIS\n");}
 	|IDENTIFIER LEFT_PARENTHESIS RIGHT_PARENTHESIS  {printf("function_expression->IDENTIFIER LEFT_PARENTHESIS RIGHT_PARENTHESIS\n");}
 	|IDENTIFIER LEFT_PARENTHESIS argument_expression_list RIGHT_PARENTHESIS  {printf("function_expression->IDENTIFIER LEFT_PARENTHESIS argument_expression_list RIGHT_PARENTHESIS\n");}
 	|IDENTIFIER DOT object_function  {printf("function_expression->IDENTIFIER DOT object_function\n");}
 	;
+argument_expression_list
+	:expression   	{printf("argument_expression_list->expression ");}
+	|expression COMMA argument_expression_list  	{printf("argument_expression_list->expression COMMA argument_expression_list");}
+	;
 object_function
 	:processor_function  {printf("object_function->processor_function\n");}
 	|job_function  {printf("object_function->job_function\n");}
-	|link_function  {printf("object_function->link_function\n");}
 	|memory_function  {printf("object_function->memory_function\n");}
+	|cluster_function {printf("object_function->cluster_function\n");}
 	;
 memory_function
 	:GET_AVAILABLE_MEMORY LEFT_PARENTHESIS RIGHT_PARENTHESIS  {printf("memory_function->GET_AVAILABLE_MEMORY LEFT_PARENTHESIS RIGHT_PARENTHESIS\n");}
@@ -412,7 +419,7 @@ processor_function
 	;
 cluster_function
 	:GET_PROCESSOR LEFT_PARENTHESIS RIGHT_PARENTHESIS  	{printf("cluster_function->GET_PROCESSOR LEFT_PARENTHESIS RIGHT_PARENTHESIS\n");}
- 	|GET_PROCESSOR  LEFT_PARENTHESIS primary_expression RIGTH_PARENTHESIS  	{printf("cluster_function->GET_PROCESSOR  LEFT_PARENTHESIS primary_expression RIGTH_PARENTHESIS \n");}
+ 	|GET_PROCESSOR  LEFT_PARENTHESIS primary_expression RIGHT_PARENTHESIS  	{printf("cluster_function->GET_PROCESSOR  LEFT_PARENTHESIS primary_expression RIGTH_PARENTHESIS \n");}
  	|IS_PROCESSOR LEFT_PARENTHESIS RIGHT_PARENTHESIS  	{printf("cluster_function->IS_PROCESSOR LEFT_PARENTHESIS RIGHT_PARENTHESIS\n");}
  	|SUBMIT_JOBS LEFT_PARENTHESIS job_list RIGHT_PARENTHESIS  	{printf("cluster_function->SUBMIT_JOBS LEFT_PARENTHESIS job_list RIGHT_PARENTHESIS\n");}
  	;
