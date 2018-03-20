@@ -375,8 +375,8 @@ static void yy_fatal_error (yyconst char msg[]  );
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
 
-#define YY_NUM_RULES 103
-#define YY_END_OF_BUFFER 104
+#define YY_NUM_RULES 104
+#define YY_END_OF_BUFFER 105
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -386,7 +386,7 @@ struct yy_trans_info
 	};
 static yyconst flex_int16_t yy_accept[475] =
     {   0,
-        0,    0,  104,  102,  101,  101,   90,  102,   96,   89,
+        0,    0,  105,  102,  101,  103,   90,  102,   96,   89,
       102,   84,   85,   94,   93,   81,   92,   88,   95,   61,
        61,   83,   78,   97,   82,   98,   58,   58,   58,   58,
        58,   58,   86,   87,   99,   58,   58,   58,   58,   58,
@@ -796,7 +796,8 @@ char *yytext;
 #include "mylang.tab.h"
 extern FILE * fp;
 void count();
-#line 800 "lex.yy.c"
+int column = 0;
+#line 801 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -1014,10 +1015,10 @@ YY_DECL
 		}
 
 	{
-#line 15 "mylang.lex"
+#line 16 "mylang.lex"
 
 
-#line 1021 "lex.yy.c"
+#line 1022 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -1076,523 +1077,528 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 17 "mylang.lex"
+#line 18 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","BREAK"); return(BREAK);}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 18 "mylang.lex"
+#line 19 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","CHAR"); return(CHAR);}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 19 "mylang.lex"
+#line 20 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","CONTINUE"); return(CONTINUE);}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 20 "mylang.lex"
+#line 21 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","ELSE"); return(ELSE);}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 21 "mylang.lex"
+#line 22 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","FLOAT"); return(FLOAT);}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 22 "mylang.lex"
+#line 23 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","FOR"); return(FOR);}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 23 "mylang.lex"
+#line 24 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","IF"); return(IF);}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 24 "mylang.lex"
+#line 25 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","INT"); return(INT);}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 25 "mylang.lex"
+#line 26 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","RETURN"); return(RETURN);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 26 "mylang.lex"
+#line 27 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","VOID"); return(VOID);}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 27 "mylang.lex"
+#line 28 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","WHILE"); return(WHILE);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 28 "mylang.lex"
+#line 29 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","PROC"); return(PROC);}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 29 "mylang.lex"
+#line 30 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","LNK"); return(LNK);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 30 "mylang.lex"
+#line 31 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","JB"); return(JB);}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 31 "mylang.lex"
+#line 32 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","CLUST"); return(CLUST);}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 32 "mylang.lex"
+#line 33 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","CLUSTER"); return(CLUSTER);}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 33 "mylang.lex"
+#line 34 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","PROCESSOR"); return(PROCESSOR);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 34 "mylang.lex"
+#line 35 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","PROCESSORS"); return(PROCESSORS);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 35 "mylang.lex"
+#line 36 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","ISA"); return(ISA);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 36 "mylang.lex"
+#line 37 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","PROC_TYPE"); return(PROC_TYPE);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 37 "mylang.lex"
+#line 38 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","CLOCK_SPEED"); return(CLOCK_SPEED);}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 38 "mylang.lex"
+#line 39 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","MEM1"); return(MEM1);}
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 39 "mylang.lex"
+#line 40 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","MEM2"); return(MEM2);}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 40 "mylang.lex"
+#line 41 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","NAME"); return(NAME);}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 41 "mylang.lex"
+#line 42 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","TOPOLOGY"); return(TOPOLOGY);}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 42 "mylang.lex"
+#line 43 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","LINK_BANDWIDTH"); return(LINK_BANDWIDTH);}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 43 "mylang.lex"
+#line 44 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","LINK_CAPACITY"); return(LINK_CAPACITY);}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 44 "mylang.lex"
+#line 45 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","LINK"); return(LINK);}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 45 "mylang.lex"
+#line 46 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","START_POINT"); return(START_POINT);}
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 46 "mylang.lex"
+#line 47 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","END_POINT"); return(END_POINT);}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 47 "mylang.lex"
+#line 48 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","MEMORY_TYPE"); return(MEMORY_TYPE);}
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 48 "mylang.lex"
+#line 49 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","MEM_TYPES"); return(MEM_TYPES);}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 49 "mylang.lex"
+#line 50 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","MEMORY_SIZE"); return(MEMORY_SIZE);}
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 50 "mylang.lex"
+#line 51 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","JOB"); return(JOB);}
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 51 "mylang.lex"
+#line 52 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","JOB_ID"); return(JOB_ID);}
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 52 "mylang.lex"
+#line 53 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","FLOPS_REQUIRED"); return(FLOPS_REQUIRED);}
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 53 "mylang.lex"
+#line 54 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","DEADLINE"); return(DEADLINE);}
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 54 "mylang.lex"
+#line 55 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","MEM_REQUIRED"); return(MEM_REQUIRED);}
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 55 "mylang.lex"
+#line 56 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","AFFINITY"); return(AFFINITY);}
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 56 "mylang.lex"
+#line 57 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","RUN"); return(RUN);}
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 57 "mylang.lex"
+#line 58 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","WAIT"); return(WAIT);}
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 58 "mylang.lex"
+#line 59 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","DISCARD_JOB"); return(DISCARD_JOB);}
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 59 "mylang.lex"
+#line 60 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","STOP"); return(STOP);}
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 60 "mylang.lex"
+#line 61 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","GET_AVAILABLE_MEMORY"); return(GET_AVAILABLE_MEMORY);}
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 61 "mylang.lex"
+#line 62 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","GET_JOB_AFFINITY"); return(GET_JOB_AFFINITY);}
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 62 "mylang.lex"
+#line 63 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","GET_JOB_MEMORY"); return(GET_JOB_MEMORY);}
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 63 "mylang.lex"
+#line 64 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","GET_FLOPS"); return(GET_FLOPS);}
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 64 "mylang.lex"
+#line 65 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","GET_DEADLINE"); return(GET_DEADLINE);}
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 65 "mylang.lex"
+#line 66 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","IS_RUNNING"); return(IS_RUNNING);}
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 66 "mylang.lex"
+#line 67 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","SUBMIT_JOBS"); return(SUBMIT_JOBS);}
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 67 "mylang.lex"
+#line 68 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","GET_FLOPS_SPEED"); return(GET_FLOPS_SPEED);}
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 68 "mylang.lex"
+#line 69 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","GET_PROC_TYPE"); return(GET_PROC_TYPE);}
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 69 "mylang.lex"
+#line 70 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","IS_PROCESSOR"); return(IS_PROCESSOR);}
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 70 "mylang.lex"
+#line 71 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","GET_PROCESSOR"); return(GET_PROCESSOR);}
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 71 "mylang.lex"
+#line 72 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","MEMORY"); return(MEMORY);}
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 72 "mylang.lex"
+#line 73 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s ","GET_CLOCK_SPEEDD"); return(GET_CLOCK_SPEED);}
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 73 "mylang.lex"
+#line 74 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","MEM"); return(MEM);}
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 75 "mylang.lex"
+#line 76 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","IDENTIFIER"); return(IDENTIFIER);}
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 77 "mylang.lex"
+#line 78 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","CONSTANT"); return(CONSTANT);}
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 78 "mylang.lex"
+#line 79 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","CONSTANT"); return(CONSTANT);}
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 79 "mylang.lex"
+#line 80 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","CONSTANT"); return(CONSTANT);}
 	YY_BREAK
 case 62:
 /* rule 62 can match eol */
 YY_RULE_SETUP
-#line 80 "mylang.lex"
+#line 81 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","CONSTANT"); return(CONSTANT);}
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 82 "mylang.lex"
+#line 83 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","CONSTANT"); return(CONSTANT);}
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 83 "mylang.lex"
+#line 84 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","CONSTANT"); return(CONSTANT);}
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
-#line 84 "mylang.lex"
+#line 85 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","CONSTANT"); return(CONSTANT);}
 	YY_BREAK
 case 66:
 /* rule 66 can match eol */
 YY_RULE_SETUP
-#line 86 "mylang.lex"
+#line 87 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","STRING_LITERAL"); return(STRING_LITERAL);}
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
-#line 88 "mylang.lex"
+#line 89 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","RIGHT_OP"); return(RIGHT_OP);}
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 89 "mylang.lex"
+#line 90 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","LEFT_OP"); return(LEFT_OP);}
 	YY_BREAK
 case 69:
 YY_RULE_SETUP
-#line 90 "mylang.lex"
+#line 91 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","INC_OP"); return(INC_OP);}
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
-#line 91 "mylang.lex"
+#line 92 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","DEC_OP"); return(DEC_OP);}
 	YY_BREAK
 case 71:
 YY_RULE_SETUP
-#line 92 "mylang.lex"
+#line 93 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","DEREF_OP"); return(DEREF_OP);}
 	YY_BREAK
 case 72:
 YY_RULE_SETUP
-#line 93 "mylang.lex"
+#line 94 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","AND_OP"); return(AND_OP);}
 	YY_BREAK
 case 73:
 YY_RULE_SETUP
-#line 94 "mylang.lex"
+#line 95 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","OR_OP"); return(OR_OP);}
 	YY_BREAK
 case 74:
 YY_RULE_SETUP
-#line 95 "mylang.lex"
+#line 96 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","LE_OP"); return(LE_OP);}
 	YY_BREAK
 case 75:
 YY_RULE_SETUP
-#line 96 "mylang.lex"
+#line 97 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","GE_OP"); return(GE_OP);}
 	YY_BREAK
 case 76:
 YY_RULE_SETUP
-#line 97 "mylang.lex"
+#line 98 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","EQ_OP"); return(EQ_OP);}
 	YY_BREAK
 case 77:
 YY_RULE_SETUP
-#line 98 "mylang.lex"
+#line 99 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","NE_OP"); return(NE_OP);}
 	YY_BREAK
 case 78:
 YY_RULE_SETUP
-#line 99 "mylang.lex"
+#line 100 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","SEMI_COLON"); return(SEMI_COLON);}
 	YY_BREAK
 case 79:
 YY_RULE_SETUP
-#line 100 "mylang.lex"
+#line 101 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","LEFT_CURLY"); return(LEFT_CURLY);}
 	YY_BREAK
 case 80:
 YY_RULE_SETUP
-#line 101 "mylang.lex"
+#line 102 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","RIGHT_CURLY"); return(RIGHT_CURLY);}
 	YY_BREAK
 case 81:
 YY_RULE_SETUP
-#line 102 "mylang.lex"
+#line 103 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","COMMA"); return(COMMA);}
 	YY_BREAK
 case 82:
 YY_RULE_SETUP
-#line 103 "mylang.lex"
+#line 104 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","ASGN_OP"); return(ASGN_OP);}
 	YY_BREAK
 case 83:
 YY_RULE_SETUP
-#line 104 "mylang.lex"
+#line 105 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","COLON"); return(COLON);}
 	YY_BREAK
 case 84:
 YY_RULE_SETUP
-#line 105 "mylang.lex"
+#line 106 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","LEFT_PARENTEHSIS"); return(LEFT_PARENTHESIS);}
 	YY_BREAK
 case 85:
 YY_RULE_SETUP
-#line 106 "mylang.lex"
+#line 107 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","RIGHT_PARENTHESIS"); return(RIGHT_PARENTHESIS);}
 	YY_BREAK
 case 86:
 YY_RULE_SETUP
-#line 107 "mylang.lex"
+#line 108 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","LEFT_BRACKET"); return(LEFT_BRACKET);}
 	YY_BREAK
 case 87:
 YY_RULE_SETUP
-#line 108 "mylang.lex"
+#line 109 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","RIGHT_BRACKET"); return(RIGHT_BRACKET);}
 	YY_BREAK
 case 88:
 YY_RULE_SETUP
-#line 109 "mylang.lex"
+#line 110 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","DOT"); return(DOT);}
 	YY_BREAK
 case 89:
 YY_RULE_SETUP
-#line 110 "mylang.lex"
+#line 111 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","AMPERSAND"); return(AMPERSAND);}
 	YY_BREAK
 case 90:
 YY_RULE_SETUP
-#line 111 "mylang.lex"
+#line 112 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","NOT_OP"); return(NOT_OP);}
 	YY_BREAK
 case 91:
 YY_RULE_SETUP
-#line 112 "mylang.lex"
+#line 113 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","BTW_NOT"); return(BTW_NOT);}
 	YY_BREAK
 case 92:
 YY_RULE_SETUP
-#line 113 "mylang.lex"
+#line 114 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","MINUS"); return(MINUS);}
 	YY_BREAK
 case 93:
 YY_RULE_SETUP
-#line 114 "mylang.lex"
+#line 115 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","PLUS"); return(PLUS);}
 	YY_BREAK
 case 94:
 YY_RULE_SETUP
-#line 115 "mylang.lex"
+#line 116 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","MUL_OP"); return(MUL_OP);}
 	YY_BREAK
 case 95:
 YY_RULE_SETUP
-#line 116 "mylang.lex"
+#line 117 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","DIV_OP"); return(DIV_OP);}
 	YY_BREAK
 case 96:
 YY_RULE_SETUP
-#line 117 "mylang.lex"
+#line 118 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","MOD_OP"); return(MOD_OP);}
 	YY_BREAK
 case 97:
 YY_RULE_SETUP
-#line 118 "mylang.lex"
+#line 119 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","LESS_THAN"); return(LESS_THAN);}
 	YY_BREAK
 case 98:
 YY_RULE_SETUP
-#line 119 "mylang.lex"
+#line 120 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","GREATER_THAN"); return(GREATER_THAN);}
 	YY_BREAK
 case 99:
 YY_RULE_SETUP
-#line 120 "mylang.lex"
+#line 121 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","XOR_OP"); return(XOR_OP);}
 	YY_BREAK
 case 100:
 YY_RULE_SETUP
-#line 121 "mylang.lex"
+#line 122 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","BTW_OR"); return(BTW_OR);}
 	YY_BREAK
 case 101:
-/* rule 101 can match eol */
 YY_RULE_SETUP
-#line 123 "mylang.lex"
+#line 124 "mylang.lex"
 { count();}
 	YY_BREAK
 case 102:
 YY_RULE_SETUP
-#line 124 "mylang.lex"
+#line 125 "mylang.lex"
 { fprintf(fp,"<"); count(); fprintf(fp,",%s> ","INVALID"); return(INVALID);}
 	YY_BREAK
 case 103:
+/* rule 103 can match eol */
 YY_RULE_SETUP
 #line 126 "mylang.lex"
+{ yylineno++; count(); }
+	YY_BREAK
+case 104:
+YY_RULE_SETUP
+#line 127 "mylang.lex"
 ECHO;
 	YY_BREAK
-#line 1596 "lex.yy.c"
+#line 1602 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2593,7 +2599,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 126 "mylang.lex"
+#line 127 "mylang.lex"
 
 
 
@@ -2601,9 +2607,6 @@ int yywrap()
 {
 	return(1);
 }
-
-
-int column = 0;
 
 void count()
 {

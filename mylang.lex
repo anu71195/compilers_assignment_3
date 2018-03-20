@@ -10,6 +10,7 @@ IS			(u|U|l|L)*
 #include "mylang.tab.h"
 extern FILE * fp;
 void count();
+int column = 0;
 %}
 
 %%
@@ -120,18 +121,15 @@ L?'(\\.|[^\\'])+'	{ fprintf(fp,"<"); count(); fprintf(fp,",%s> ","CONSTANT"); re
 "^"			{ fprintf(fp,"<"); count(); fprintf(fp,",%s> ","XOR_OP"); return(XOR_OP);}
 "|"			{ fprintf(fp,"<"); count(); fprintf(fp,",%s> ","BTW_OR"); return(BTW_OR);}
 
-[ \t\v\n\f]		{ count();}
+[ \t\v\f]		{ count();}
 .			{ fprintf(fp,"<"); count(); fprintf(fp,",%s> ","INVALID"); return(INVALID);}
-
+"\n"			{ yylineno++; count(); }
 %%
 
 int yywrap()
 {
 	return(1);
 }
-
-
-int column = 0;
 
 void count()
 {

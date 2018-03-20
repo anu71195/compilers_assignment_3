@@ -1,5 +1,5 @@
 
-job_1 = Job(job_id=1, flops_required = 100, deadline = 200, mem_required = 1024, affinity = [0.2,0.5,1,2]) 
+jb job_1 = Job(job_id=1, flops_required = 100, deadline = 200, mem_required = 1024, affinity = [0.2,0.5,1,2]) 
 
 job_2 = Job(job_id=2, flops_required = 5, deadline = 20, mem_required = 64, affinity = [0.2,0.5,1,2])
 
